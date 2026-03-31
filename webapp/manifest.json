@@ -1,0 +1,261 @@
+{
+  "_version": "1.83.0",
+  "sap.app": {
+    "id": "com.expensemanagement.expensemanagement",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.21.0",
+      "toolsId": "51ec0036-eb7c-4886-b7c3-eed9475d68bf"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.146.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.expensemanagement.expensemanagement.i18n.i18n"
+        }
+      },
+      "userModel": {
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      
+      "expenseModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "data": {
+            "requests": [
+              {
+                "empId": "EMP001",
+                "travelType": "Domestic",
+                "startDate": "2026-03-20",
+                "endDate": "2026-03-22",
+                "destination": "Bangalore",
+                "amount": 5000,
+                "purpose": "Client Meeting",
+                "status": "Approved"
+              },
+               {
+                "empId": "EMP003",
+                "travelType": "International",
+                "startDate": "2026-03-20",
+                "endDate": "2026-03-22",
+                "destination": "North Korea",
+                "amount": 5000,
+                "purpose": "Client Meeting",
+                "status": "Rejected"
+              },
+              {
+                "empId": "EMP002",
+                "travelType": "International",
+                "startDate": "2026-04-01",
+                "endDate": "2026-04-05",
+                "destination": "Singapore",
+                "amount": 45000,
+                "purpose": "Conference",
+                "status": "Pending"
+              },
+              {
+                "empId": "EMP003",
+                "travelType": "National",
+                "startDate": "2026-04-01",
+                "endDate": "2026-04-05",
+                "destination": "Delhi",
+                "amount": 45000,
+                "purpose": "Conference",
+                "status": "Pending"
+              },
+               {
+                "empId": "EMP002",
+                "travelType": "International",
+                "startDate": "2026-04-01",
+                "endDate": "2026-04-05",
+                "destination": "Singapore",
+                "amount": 45000,
+                "purpose": "Conference",
+                "status": "DRAFT"
+              },
+               {
+                "empId": "EMP002",
+                "travelType": "International",
+                "startDate": "2026-04-01",
+                "endDate": "2026-04-05",
+                "destination": "USA",
+                "amount": 450500,
+                "purpose": "Conference",
+                "status": "DRAFT"
+              },
+               {
+                "empId": "EMP005",
+                "travelType": "International",
+                "startDate": "2026-04-01",
+                "endDate": "2026-04-05",
+                "destination": "AUS",
+                "amount": 450500,
+                "purpose": "Client Meeting",
+                "status": "Approved"
+              }
+            ]
+            
+          }
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.expensemanagement.expensemanagement.view",
+        "async": true,
+        "viewPath": "com.expensemanagement.expensemanagement.view"
+      },
+      "routes": [
+        {
+          "name": "dashboard",
+          "pattern": ":?query:",
+          "target": [
+            "TargetView1"
+          ]
+        },
+        {
+          "name": "createReq",
+          "pattern": "create",
+          "target": [
+            "createView"
+          ]
+        },
+        {
+          "name":"draftRequest",
+          "pattern":"draft",
+          "target":[
+            "draftView"
+          ]
+        },
+        {
+          "name":"requestStatus",
+          "pattern":"status",
+          "target":[
+            "statusView"
+          ]
+        },
+        {
+          "name":"pendingApproval",
+          "pattern":"pending",
+          "target":[
+            "pendingView"
+          ]
+        },
+        {
+          "name":"viewRequest",
+          "pattern":"view",
+          "target":[
+            "viewView"
+          ]
+        },
+        {
+          "name":"testRequest",
+          "pattern":"test",
+          "target":[
+            "testView"
+          ]
+        },
+        {
+          "name":"objectPage",
+           "pattern": "object/{path}",
+      "target": "objectPage"
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "id": "View1",
+          "name": "View1"
+        },
+        "createView": {
+          "id": "Create",
+          "name": "Create"
+        },
+        "draftView":{
+          "id":"Draft",
+          "name":"Draft"
+        },
+        "statusView":{
+          "id":"List",
+          "name":"List"
+        },
+        "pendingView":{
+          "id":"Pending",
+          "name":"Pending"
+        },
+        "viewView":{
+          "id":"Finance",
+          "name":"Finance"
+        },
+        "testView":{
+          "id":"Test",
+          "name":"Test"
+        },
+        "objectPage":{
+          "id":"Object",
+          "name":"Object"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.expensemanagement.expensemanagement.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "comexpensemanagementexpensemanagement"
+  }
+}

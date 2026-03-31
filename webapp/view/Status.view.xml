@@ -1,0 +1,92 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.Status"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page title="Request Status">
+        <content>
+            <!-- 🔍 Search + Filter -->
+            <Toolbar>
+                <SearchField
+                    width="50%"
+                    liveChange="onSearch"
+                    placeholder="Search destination / purpose..."
+                />
+                <ToolbarSpacer />
+                <Select change="onFilterChange">
+                    <items>
+                        <core:Item
+                            key="ALL"
+                            text="All"
+                            xmlns:core="sap.ui.core"
+                        />
+                        <core:Item
+                            key="Approved"
+                            text="Approved"
+                            xmlns:core="sap.ui.core"
+                        />
+                        <core:Item
+                            key="Rejected"
+                            text="Rejected"
+                            xmlns:core="sap.ui.core"
+                        />
+                    </items>
+                </Select>
+            </Toolbar>
+            <!-- 📊 Table -->
+            <Table
+                id="statusTable"
+                items="{ path: '/Requests'}"
+                class="sapUiResponsiveMargin"
+            >
+                <columns>
+                    <Column>
+                        <Text text="Emp ID" />
+                    </Column>
+                    <Column>
+                        <Text text="Destination" />
+                    </Column>
+                    <Column>
+                        <Text text="Type" />
+                    </Column>
+                    <Column>
+                        <Text text="Amount" />
+                    </Column>
+                    <Column>
+                        <Text text="Purpose" />
+                    </Column>
+                    <Column>
+                        <Text text="Status" />
+                    </Column>
+                    <Column
+                        
+                    >
+                        <Text text="Reason" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{empId}" />
+                            <Text text="{destination}" />
+                            <Text text="{travelType}" />
+                            <Text text="{amount}" />
+                            <Text text="{purpose}" />
+
+                          <ObjectStatus
+    text="{status}"
+    state="{ path: 'status', formatter: '.formatter.statusText' }"
+/>
+                            <Button 
+    icon="sap-icon://slim-arrow-up" 
+    text="Reason"
+    press="onShowReason"/>
+
+                          
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

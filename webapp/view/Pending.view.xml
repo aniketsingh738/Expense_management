@@ -1,0 +1,110 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.Pending"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page title="Pending Requests">
+        <content>
+
+            <Table
+                id="pendingTable"
+                items="{ path: '/Requests'}"
+                growing="true"
+                growingScrollToLoad="true"
+                class="sapUiResponsiveMargin"
+            >
+
+                <!-- Columns -->
+                <columns>
+
+                    <!-- Main Info -->
+                    <Column width="16em">
+                        <Text text="Request" />
+                    </Column>
+
+                    <!-- Travel Info -->
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Travel Info" />
+                    </Column>
+
+                    <!-- Amount -->
+                    <Column
+                        hAlign="{= ${usetModel>/role} ==='APPROVER'?'End':'Start'}"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Amount" />
+                    </Column>
+
+                    <!-- Actions -->
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        visible="{= ${userModel>/role} === 'APPROVER' }"
+                    >
+                        <Text text="Actions" />
+                    </Column>
+
+                </columns>
+
+                <!-- Items -->
+                <items>
+                    <ColumnListItem vAlign="Middle">
+
+                        <cells>
+
+                            <!-- ✅ Main Info -->
+                            <ObjectIdentifier
+                                title="{destination}"
+                                text="Emp ID: {empId}"
+                            />
+
+                            <!-- ✅ Travel + Purpose -->
+                            <VBox>
+                                <Text text="{travelType}" />
+                                <Text
+                                    text="{purpose}"
+                                    class="sapUiTinyMarginTop"
+                                />
+                            </VBox>
+
+                            <!-- ✅ Amount -->
+                            <ObjectNumber
+                                number="{amount}"
+                                unit="INR"
+                            />
+
+                            <!-- ✅ Actions -->
+                            <HBox
+                                visible="{= ${userModel>/role} === 'APPROVER' }"
+                                justifyContent="Start"
+                                renderType="Bare"
+                            >
+                                <Button
+                                    icon="sap-icon://accept"
+                                    type="Accept"
+                                    press="onApprove"
+                                    tooltip="Approve"
+                                />
+                                <Button
+                                    icon="sap-icon://decline"
+                                    type="Reject"
+                                    press="onReject"
+                                    class="sapUiTinyMarginBegin"
+                                    tooltip="Reject"
+                                />
+                            </HBox>
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+
+            </Table>
+
+        </content>
+    </Page>
+</mvc:View>

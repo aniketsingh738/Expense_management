@@ -1,0 +1,129 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.Finance"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Page title="Finance View">
+        <!-- Filter Section -->
+        <VBox class="sapUiSmallMargin">
+            <HBox
+                justifyContent="SpaceBetween"
+                wrap="Wrap"
+            >
+                <!-- Employee ID -->
+                <VBox>
+                    <Label text="Employee ID" />
+                    <Input
+                        id="empIdInput"
+                        placeholder="Enter Employee ID"
+                        width="200px"
+                    />
+                </VBox>
+
+                <!-- Date Range -->
+                <VBox>
+                    <Label text="Date Range" />
+                    <DateRangeSelection
+                        id="dateRange"
+                        width="250px"
+                    />
+                </VBox>
+
+                <!-- Amount -->
+                <VBox>
+                    <Label text="Amount (>=)" />
+                    <Input
+                        id="amountInput"
+                        type="Number"
+                        placeholder="Enter amount"
+                        width="200px"
+                    />
+                </VBox>
+
+                <!-- Filter Button -->
+                <VBox justifyContent="End">
+                    <HBox>
+                        <Button
+                            text="Apply Filters"
+                            press="onFilter"
+                        />
+
+                        <!-- ✅ Clear Button -->
+                        <Button
+                            text="Clear"
+                            type="Transparent"
+                            press="onClearFilters"
+                            class="sapUiTinyMarginBegin"
+                        />
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Table -->
+
+        <Table
+            id="financeTable"
+            items="{ path: '/Requests'}"
+            growing="true"
+            growingScrollToLoad="true"
+            class="sapUiResponsiveMargin"
+        >
+            <columns>
+                <Column width="18em">
+                    <Text text="Request Info" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="Travel Details" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Amount" />
+                </Column>
+                <Column>
+                    <Text text="Status" />
+                </Column>
+            </columns>
+
+            <items>
+                <ColumnListItem
+                    type="Active"
+                    press="onItemPress"
+                    vAlign="Middle"
+                >
+                    <cells>
+                        <!-- ✅ Main Info -->
+                        <ObjectIdentifier
+                            title="{destination}"
+                            text="Emp ID: {empId}"
+                        />
+
+                        <!-- ✅ Secondary Info -->
+                        <VBox>
+                            <Text text="{travelType}" />
+                            <Text
+                                text="{purpose}"
+                                class="sapUiTinyMarginTop"
+                            />
+                        </VBox>
+
+                        <!-- ✅ Amount -->
+                        <ObjectNumber
+                            number="{amount}"
+                            unit="INR"
+                        />
+
+                        <!-- ✅ Status -->
+                        <ObjectStatus
+                            text="{status}"
+                            state="{ path: 'status', formatter: '.formatter.statusText' }"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

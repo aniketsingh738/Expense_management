@@ -1,0 +1,78 @@
+<mvc:View controllerName="com.expensemanagement.expensemanagement.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+   
+  
+  <VBox class="sapUiSmallMargin">
+
+    <!-- Flex container for tiles -->
+    <HBox wrap="Wrap">
+
+      <!-- Draft / Created Requests -->
+      <GenericTile class="sapUiTinyMargin tileLayout"
+        header="Draft/Create Requests"
+        frameType="OneByHalf"
+        press="onPressDraft">
+        
+        <TileContent footer="Current Status">
+          <NumericContent 
+            value="{draftCount}" 
+            valueColor="Neutral"
+            indicator="None"
+            withMargin="false" />
+        </TileContent>
+      </GenericTile>
+
+      <!-- Pending Approval -->
+      <GenericTile class="sapUiTinyMargin tileLayout"
+        header="Pending Approval"
+        frameType="OneByHalf"
+        press="onPressPending">
+        
+        <TileContent footer="Awaiting Action">
+          <NumericContent 
+            value="{pendingCount}" 
+            valueColor="Critical"
+            indicator="Up"
+            withMargin="false" />
+        </TileContent>
+      </GenericTile>
+
+      <!-- Approved Requests -->
+      <GenericTile class="sapUiTinyMargin tileLayout"
+        header="Approved Requests"
+        frameType="OneByHalf"
+        press="onPressApproved">
+        
+        <TileContent footer="Successfully Approved">
+          <NumericContent 
+            value="{approvedCount}" 
+            valueColor="Good"
+            indicator="Up"
+            withMargin="false" />
+        </TileContent>
+      </GenericTile>
+
+      <!-- Rejected Requests -->
+      <GenericTile class="sapUiTinyMargin tileLayout"
+        header="Rejected Requests"
+        frameType="OneByHalf"
+        press="onPressRejected">
+        
+        <TileContent footer="Declined Requests">
+          <NumericContent 
+            value="{rejectedCount}" 
+            valueColor="Error"
+            indicator="Down"
+            withMargin="false" />
+        </TileContent>
+      </GenericTile>
+
+    </HBox>
+
+  </VBox>
+
+</Page>
+   
+</mvc:View>

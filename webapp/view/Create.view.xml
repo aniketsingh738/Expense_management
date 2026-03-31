@@ -1,0 +1,84 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.Create"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+>
+
+<Page title="{i18n>createPageTitle}">
+
+    <content>
+
+        <!-- Outer Container for Padding -->
+        <VBox class="sapUiMediumMargin">
+
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="4"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="1"
+                emptySpanL="1"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="2"
+                columnsL="2"
+                columnsM="1"
+                class="sapUiResponsiveMargin sapUiContentPadding"
+            >
+
+                <!-- Employee ID -->
+                <Label text="{i18n>CrPgemployeeId}" />
+                <Input value="{/empId}" editable="false" />
+
+                <!-- Travel Type -->
+                <Label text="{i18n>CrPgtravelType}" />
+                <Select selectedKey="{/travelType}">
+                    <items>
+                        <core:Item key="" text="{i18n>CrPgtravleTypeSelD}" />
+                        <core:Item key="Domestic" text="{i18n>CrPgtravelTypeDom}" />
+                        <core:Item key="International" text="{i18n>CrPgtravelTypeInt}" />
+                    </items>
+                </Select>
+
+                <!-- Start Date -->
+                <Label text="{i18n>CrPgstartDate}" />
+                <DatePicker value="{/startDate}" width="100%" />
+
+                <!-- End Date -->
+                <Label text="{i18n>CrPgendDate}" />
+                <DatePicker value="{/endDate}" width="100%" />
+
+                <!-- Destination -->
+                <Label text="{i18n>CrPgdestination}" />
+                <Input value="{/destination}" />
+
+                <!-- Amount -->
+                <Label text="{i18n>CrPgestimatedAmount}" />
+                <Input value="{/amount}" type="Number" />
+
+                <!-- Purpose -->
+                <Label text="{i18n>CrPgpurpose}" required="true" />
+                <TextArea value="{/purpose}" rows="3" />
+
+            </f:SimpleForm>
+
+            <!-- Button aligned properly -->
+            <HBox justifyContent="End" class="sapUiMediumMarginTop">
+                <Button
+                    text="{i18n>CrPgsubmitRequest}"
+                    type="Emphasized"
+                    press="onSubmit"
+                />
+            </HBox>
+
+        </VBox>
+
+    </content>
+
+</Page>
+</mvc:View>

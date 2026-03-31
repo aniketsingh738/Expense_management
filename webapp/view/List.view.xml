@@ -1,0 +1,90 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.List"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page title="Request Status">
+        <content>
+
+            <!-- 🔍 Filter Bar -->
+            <Toolbar class="sapUiSmallMarginBottom">
+                <SearchField
+                 id="searchField"
+                    width="50%"
+                    liveChange="onSearch"
+                    placeholder="Search destination / purpose..."
+                />
+                <ToolbarSpacer />
+                <Select id="statusSelect" change="onFilterChange" selectedKey="ALL">
+                    <items>
+                        <core:Item key="ALL" text="All" />
+                        <core:Item key="Approved" text="Approved" />
+                        <core:Item key="Rejected" text="Rejected" />
+                    </items>
+                </Select>
+            </Toolbar>
+
+            <!-- 📊 Improved List Table -->
+            <Table
+                id="statusTable"
+                items="{ path: '/Requests'}"
+                growing="true"
+                growingScrollToLoad="true"
+                class="sapUiResponsiveMargin"
+            >
+                <columns>
+                    <Column width="18em">
+                        <Text text="Request Info"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Travel Details"/>
+                    </Column>
+                    <Column hAlign="End">
+                        <Text text="Amount"/>
+                    </Column>
+                    <Column>
+                        <Text text="Status"/>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                        type="Active"
+                        press="onItemPress"
+                        vAlign="Middle"
+                    >
+                        <cells>
+
+                            <!-- ✅ Main Info -->
+                            <ObjectIdentifier
+                                title="{destination}"
+                                text="Emp ID: {empId}"
+                            />
+
+                            <!-- ✅ Secondary Info -->
+                            <VBox>
+                                <Text text="{travelType}" />
+                                <Text text="{purpose}" class="sapUiTinyMarginTop"/>
+                            </VBox>
+
+                            <!-- ✅ Amount -->
+                            <ObjectNumber
+                                number="{amount}"
+                                unit="INR"
+                            />
+
+                            <!-- ✅ Status -->
+                            <ObjectStatus
+                                text="{status}"
+                                state="{ path: 'status', formatter: '.formatter.statusText' }"
+                            />
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+    </Page>
+</mvc:View>

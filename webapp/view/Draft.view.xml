@@ -1,0 +1,126 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.Draft"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page title="Draft Requests" class="bluePageTitle">
+        <content>
+            <Table
+                id="draftTable"
+                items="{
+          path: '/Requests'
+         
+        }"
+                growing="true"
+                growingScrollToLoad="true"
+                class="sapUiResponsiveMargin"
+            >
+                <!-- Columns -->
+                <columns>
+                    <!-- Always visible -->
+                    <Column width="10em">
+                        <Text text="Emp ID" />
+                    </Column>
+
+                    <Column>
+                        <Text text="Type" />
+                    </Column>
+
+                    <!-- Tablet and above -->
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Start Date" />
+                    </Column>
+
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="End Date" />
+                    </Column>
+
+                    <!-- Tablet -->
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Destination" />
+                    </Column>
+
+                    <!-- Desktop mostly -->
+                    <Column
+                        minScreenWidth="Desktop"
+                        demandPopin="true"
+                        hAlign="Begin"
+                    >
+                        <Text text="Amount" />
+                    </Column>
+
+                    <!-- Less important -->
+                    <Column
+                        minScreenWidth="Desktop"
+                        demandPopin="true"
+                        hAlign="Begin"
+                    >
+                        <Text text="Purpose" />
+                    </Column>
+
+                    <!-- Always visible (important for actions) -->
+                    <Column
+                        hAlign="Begin"
+                     
+                        class="sapUiSmallMarginEnd"
+                    >
+                        <Text text="Actions" />
+                    </Column>
+                </columns>
+                <!-- Rows -->
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{empId}" />
+                            <Text text="{travelType}" />
+
+                            <Text text="{startDate}" />
+                            <Text text="{endDate}" />
+
+                            <Text text="{destination}" />
+
+                            <ObjectNumber
+                                number="{amount}"
+                                unit="INR"
+                            />
+
+                            <Text text="{purpose}" />
+
+                            <!-- Actions -->
+                            <MenuButton icon="sap-icon://overflow">
+                                <menu>
+                                    <Menu>
+                                        <MenuItem
+                                            icon="sap-icon://edit"
+                                            press="onEdit"
+                                            text="Edit"
+                                        />
+                                        <MenuItem
+                                            icon="sap-icon://delete"
+                                            press="onDelete"
+                                            text="Delete"
+                                        />
+                                        <MenuItem
+                                            icon="sap-icon://paper-plane"
+                                            press="onSubmit"
+                                            text="Submit"
+                                        />
+                                    </Menu>
+                                </menu>
+                            </MenuButton>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,121 @@
+{
+  "d": {
+    "results": [
+      {
+        "id":"646767r7756775",
+        "empId": "EMP001",
+        "travelType": "International",
+        "startDate": "2026-04-01",
+        "endDate": "2026-04-05",
+        "destination": "Singapore",
+        "amount": 45000,
+        "purpose": "Conference",
+        "status": "Approved",
+        "reason":""
+      },
+      {
+        "id":"6747tvvyvrf64f6yjc",
+        "empId": "EMP001",
+        "travelType": "Domestic",
+        "startDate": "2026-03-20",
+        "endDate": "2026-03-22",
+        "destination": "Bangalore",
+        "amount": 5000,
+        "purpose": "Client Meeting",
+        "status": "Approved",
+        "reason":"frff"
+      },
+      {
+        "id":"6747tvvyvrf64f6yvrrrjc",
+        "empId": "EMP001",
+        "travelType": "Domestic",
+        "startDate": "2026-03-20",
+        "endDate": "2026-03-22",
+        "destination": "Bangalore",
+        "amount": 5000,
+        "purpose": "Client Meeting",
+        "status": "Approved",
+         "reason":"Approved automatically"
+      },
+      {
+        "id":"6747tvv67464vfyvrf64f6yjc",
+        "empId": "EMP003",
+        "travelType": "International",
+        "startDate": "2026-03-20",
+        "endDate": "2026-03-22",
+        "destination": "North Korea",
+        "amount": 5000,
+        "purpose": "Client Meeting",
+        "status": "Rejected",
+         "reason":"unsuffiecint fund send again after 1 month"
+      },
+      {
+        "id":"yuu4b6676746yf4r747",
+        "empId": "EMP002",
+        "travelType": "International",
+        "startDate": "2026-04-01",
+        "endDate": "2026-04-05",
+        "destination": "Singapore",
+        "amount": 45000,
+        "purpose": "Conference",
+        "status": "Pending"
+      },
+      {
+        "id":"73554y7ryubbcg746",
+        "empId": "EMP003",
+        "travelType": "National",
+        "startDate": "2026-04-01",
+        "endDate": "2026-04-05",
+        "destination": "Delhi",
+        "amount": 45000,
+        "purpose": "Conference",
+        "status": "Pending"
+      },
+      {
+        "id":"6747tvvgvghg7463yvrf64f6yjc",
+        "empId": "EMP001",
+        "travelType": "International",
+        "startDate": "2026-04-01",
+        "endDate": "2026-04-05",
+        "destination": "USA",
+        "amount": 450500,
+        "purpose": "Conference",
+        "status": "Draft"
+      },
+      {
+        "id":"6747tvvyvrf64675674vgf6yjc",
+        "empId": "EMP005",
+        "travelType": "International",
+        "startDate": "2026-04-01",
+        "endDate": "2026-04-05",
+        "destination": "AUS",
+        "amount": 450500,
+        "purpose": "Client Meeting",
+        "status": "Approved",
+        "reason":"Approved automatically"
+      },
+            {
+              "id":"6747tvvyvrf64yrfyurf674v4akf6yjc",
+        "empId": "EMP001",
+        "travelType": "International",
+        "startDate": "2026-04-01",
+        "endDate": "2026-04-05",
+        "destination": "Mysore",
+        "amount": 450500,
+        "purpose": "Client Meeting",
+        "status": "Draft"
+      },
+      {
+              "id":"6747tvvycddcvrf64yrfyurf674v4akf6yjc",
+        "empId": "EMP001",
+        "travelType": "International",
+        "startDate": "2026-04-01",
+        "endDate": "2026-04-05",
+        "destination": "Goa",
+        "amount": 4500,
+        "purpose": "Client Meeting",
+        "status": "Pending"
+      }
+    ]
+  }
+}

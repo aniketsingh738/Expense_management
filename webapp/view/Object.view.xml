@@ -1,0 +1,41 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.Object"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page title="Request Details" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+
+            <ObjectHeader
+                title="{destination}"
+                number="{amount}"
+                numberUnit="INR"
+            >
+                <attributes>
+                    <ObjectAttribute text="Employee ID: {empId}" />
+                    <ObjectAttribute text="Type: {travelType}" />
+                    <ObjectAttribute text="Purpose: {purpose}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus
+                        text="{status}"
+                        state="{ path: 'status', formatter: '.formatter.statusText' }"
+                    />
+                </statuses>
+            </ObjectHeader>
+
+            <Panel headerText="Additional Details">
+                <VBox class="sapUiSmallMargin">
+                    <Text text="Start Date: {startDate}" />
+                    <Text text="End Date: {endDate}" />
+                    
+                 <ObjectStatus
+    text="{= ${reason} ? 'Remark: ' + ${reason} : 'Remark: -' }"
+    state="{ path: 'status', formatter: '.formatter.statusText' }"
+/>
+                </VBox>
+            </Panel>
+
+        </content>
+    </Page>
+</mvc:View>
