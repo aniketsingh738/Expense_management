@@ -11,6 +11,29 @@ sap.ui.define([], () => {
 				default:
 					return "None";
 			}
+		},
+		formatDate(sDate) {
+			if (!sDate) {
+				return "";
+			}
+
+			
+			const oDate = new Date(sDate);
+
+			
+			if (isNaN(oDate)) {
+				return sDate;
+			}
+
+	
+			const options = {
+				day: "numeric",
+				month: "long",
+				year: "numeric"
+			};
+
+			
+			return oDate.toLocaleDateString("en-GB", options);
 		}
 	};
 });

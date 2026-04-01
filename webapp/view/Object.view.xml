@@ -26,12 +26,18 @@
 
             <Panel headerText="{i18n>ObPgadditionalDetailsHeading}">
                 <VBox class="sapUiSmallMargin">
-                    <Text text="{i18n>ObPgstartDate}: {startDate}" />
-                    <Text text="{i18n>ObPgendDate}: {endDate}" />
+                    <Text text="{i18n>ObPgstartDate}: {
+                    path:'startDate',
+                    formatter:'.formatter.formatDate'
+                    }" />
+                    <Text text="{i18n>ObPgendDate}: {
+                    path:'endDate',
+                    formatter:'.formatter.formatDate'
+                    }" />
                     
                  <ObjectStatus
-    text="{= ${reason} ? 'Remark: ' + ${reason} : 'Remark: -' }"
-    state="{ path: 'status', formatter: '.formatter.statusText' }"
+            text="{= ${reason} ? 'Remark: ' + ${reason} : 'Remark: -' }"
+            state="{ path: 'status', formatter: '.formatter.statusText' }"
 />
                 </VBox>
             </Panel>

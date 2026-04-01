@@ -14,9 +14,6 @@ sap.ui.define([
       this._sSearch = "";
       const oRouter = this.getOwnerComponent().getRouter();
       oRouter.getRoute("viewRequest").attachPatternMatched(this._onRouteMatched, this);
-      const oTable = this.byId("financeTable");
-
-
 
     }
 

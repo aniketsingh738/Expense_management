@@ -67,12 +67,19 @@
                                     class="sapUiTinyMarginTop"
                                     wrap="Wrap"
                                 >
-                                    <Text text="{startDate}" />
+                                    <Text text="{
+                                    path:'startDate',
+                                    formatter:'.formatter.formatDate'
+                                    }" />
                                     <Text
                                         text=" - "
                                         class="sapUiTinyMarginBegin sapUiTinyMarginEnd"
                                     />
-                                    <Text text="{endDate}" />
+                                    <Text text="{
+                                    
+                                    path:'endDate',
+                                    formatter:'.formatter.formatDate'
+                                    }" />
                                 </HBox>
 
                                 <!--Purpose -->

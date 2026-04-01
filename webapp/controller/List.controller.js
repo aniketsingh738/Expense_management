@@ -126,7 +126,7 @@ sap.ui.define([
 
             if (!oContext) return;
 
-            const sPath = oContext.getPath(); // ✅ correct
+            const sPath = oContext.getPath(); 
 
             this.getOwnerComponent().getRouter().navTo("objectPage", {
                 path: encodeURIComponent(sPath)

@@ -1,11 +1,13 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/m/MessageToast",
-  "sap/m/MessageBox"
-], (Controller, MessageToast, MessageBox) => {
+  "sap/m/MessageBox",
+  "com/expensemanagement/expensemanagement/utils/formatter"
+], (Controller, MessageToast, MessageBox, formatter) => {
   "use strict";
 
   return Controller.extend("com.expensemanagement.expensemanagement.controller.Draft", {
+    formatter: formatter,
     onInit() {
       const oModel = this.getOwnerComponent().getModel();
       console.log("FULL MODEL DATA:", oModel.getData());
@@ -16,38 +18,38 @@ sap.ui.define([
 
     //on route match fn
     _onRouteMatched() {
-     const oView = this.getView();
+      const oView = this.getView();
 
-  const oTable = oView.byId("draftTable");
+      const oTable = oView.byId("draftTable");
 
-  const oUserModel = this.getOwnerComponent().getModel("userModel");
-  const sEmpId = oUserModel.getProperty("/empId");
-    
-  const oBinding = oTable.getBinding("items");
+      const oUserModel = this.getOwnerComponent().getModel("userModel");
+      const sEmpId = oUserModel.getProperty("/empId");
 
-  const aFilters = [
-    new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.EQ, "Draft"),
-    new sap.ui.model.Filter("empId", sap.ui.model.FilterOperator.EQ, sEmpId)
-  ];
+      const oBinding = oTable.getBinding("items");
 
-  // employee id and status = Draft filters to draft table
-  oBinding.filter(aFilters);
+      const aFilters = [
+        new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.EQ, "Draft"),
+        new sap.ui.model.Filter("empId", sap.ui.model.FilterOperator.EQ, sEmpId)
+      ];
 
-  // Side nav selection 
-  const oSideNav = this.getOwnerComponent()
-    .getRootControl()
-    .byId("sideNavigation");
+      // employee id and status = Draft filters to draft table
+      oBinding.filter(aFilters);
 
-  if (oSideNav) {
-    oSideNav.setSelectedKey("draftRequest");
-  }
+      // Side nav selection 
+      const oSideNav = this.getOwnerComponent()
+        .getRootControl()
+        .byId("sideNavigation");
+
+      if (oSideNav) {
+        oSideNav.setSelectedKey("draftRequest");
+      }
     }
     ,
     //when edit is click display dialog to enter values
     onEdit(oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
       const oData = oContext.getObject();
-      const sId=oData.id;
+      const sId = oData.id;
       // Store path 
       this._sEditPath = `/Requests('${sId}')`;;
       console.log(this._sEditPath);
@@ -70,13 +72,13 @@ sap.ui.define([
     //when delete is clicked open messagebox if ok then delete request
     onDelete(oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
-     const oData=oContext.getObject();
+      const oData = oContext.getObject();
       const oModel = this.getOwnerComponent().getModel();
 
-      const sId=oData.id;
-      const sPath=`/Requests('${sId}')`;
-      
-      
+      const sId = oData.id;
+      const sPath = `/Requests('${sId}')`;
+
+
       // message box for confirmation
       MessageBox.confirm(
         "Do you want to delete this request?",
@@ -109,7 +111,7 @@ sap.ui.define([
     onSaveEdit() {
       const oModel = this.getOwnerComponent().getModel();
       const oEditData = this.getView().getModel("editModel").getData();
-      
+
       //field validation
       if (!oEditData.travelType ||
         !oEditData.startDate ||
@@ -137,7 +139,7 @@ sap.ui.define([
         return;
       }
 
-     
+
       //amount<=0
       const amount = parseFloat(oEditData.amount);
 
@@ -177,13 +179,13 @@ sap.ui.define([
     //submit the req change status from Draft -> Pending
     onSubmit(oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
-      
+
       const oModel = this.getOwnerComponent().getModel();
-     
+
 
       const oData = oContext.getObject();
-      const sId=oData.id;
-       const sPath = `/Requests('${sId}')`;
+      const sId = oData.id;
+      const sPath = `/Requests('${sId}')`;
 
       //Prevent re-submit
       if (oData.status === "Pending") {
@@ -207,7 +209,7 @@ sap.ui.define([
         success: () => {
           sap.m.MessageToast.show("Request submitted successfully");
 
-          
+
           oModel.updateBindings(true);
         },
         error: (oError) => {

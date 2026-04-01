@@ -1,10 +1,12 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
-  "sap/m/MessageToast"
-], (Controller, MessageToast) => {
+  "sap/m/MessageToast",
+   "com/expensemanagement/expensemanagement/utils/formatter"
+], (Controller, MessageToast,formatter) => {
   "use strict";
 
   return Controller.extend("com.expensemanagement.expensemanagement.controller.Pending", {
+    formatter:formatter,
     onInit() {
       const oRouter = this.getOwnerComponent().getRouter();
       oRouter.getRoute("pendingApproval")
@@ -100,12 +102,6 @@ sap.ui.define([
         return;
       }
 
-      // Get original object
-      //const oContext = this.getView().getBindingContext();
-
-
-
-     
       const oUpdateData = {
         ...this._oData,
         status: this._sAction === "Approve" ? "Approved" : "Rejected",
