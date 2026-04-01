@@ -113,14 +113,14 @@ webapp/
 
 ### 🔹 Controllers
 
-| Controller | Description                |
-| ---------- | -------------------------- |
-| Create     | Create expense request     |
-| Draft      | Edit/Delete draft requests |
-| List       | View request status        |
-| Pending    | Approve/Reject requests    |
-| Finance    | View approved requests     |
-| Object     | Detailed request view      |
+| Controller | Description                                   |
+| ---------- | --------------------------------------------- |
+| Create     | Create expense request                        |
+| Draft      | Edit/Delete draft requests                    |
+| List       | View request status (approved/rejected)       |
+| Pending    | Approve/Reject requests                       |
+| Finance    | View approved requests                        |
+| Object     | Detailed request view                         |
 
 ---
 
