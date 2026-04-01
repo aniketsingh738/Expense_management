@@ -134,8 +134,8 @@ webapp/
 ### 📥 Clone Repository
 
 ```bash
-git clone https://github.com/<your-username>/expense-management.git
-cd expense-management
+git clone https://github.com/aniketsingh738/Expense_management.git
+cd Expense_management
 ```
 
 ### 📦 Install Dependencies
