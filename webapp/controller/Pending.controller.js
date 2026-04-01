@@ -1,21 +1,21 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/m/MessageToast",
-   "com/expensemanagement/expensemanagement/model/formatter"
-], (Controller, MessageToast,formatter) => {
+  "com/expensemanagement/expensemanagement/model/formatter"
+], (Controller, MessageToast, formatter) => {
   "use strict";
 
   return Controller.extend("com.expensemanagement.expensemanagement.controller.Pending", {
-    formatter:formatter,
+    formatter: formatter,
     onInit() {
       const oRouter = this.getOwnerComponent().getRouter();
       oRouter.getRoute("pendingApproval")
         .attachPatternMatched(this._onRouteMatched, this);
     },
 
-// on Route matched
+    // on Route matched
     _onRouteMatched() {
-      
+
 
       const oSideNav = this.getOwnerComponent()
         .getRootControl()
@@ -51,10 +51,13 @@ sap.ui.define([
           new sap.ui.model.Filter("empId", "EQ", sEmpId)
         );
       }
-
+      oTable.setBusy(true)
+      oBinding.attachEventOnce("dataReceived", () => {
+        oTable.setBusy(false);
+      });
       oBinding.filter(aFilters);
     },
-    
+
     // when approve is clicked
     onApprove(oEvent) {
       this._openReasonDialog("Approve", oEvent);
@@ -71,7 +74,7 @@ sap.ui.define([
       this._sAction = sAction;
       this._oData = oContext.getObject();
       const sId = this._oData.id;
-      this._sPath = `/Requests('${sId}')`; 
+      this._sPath = `/Requests('${sId}')`;
 
       const oReasonModel = new sap.ui.model.json.JSONModel({
         title: `${sAction} Request`,
@@ -93,6 +96,7 @@ sap.ui.define([
 
     // when submit btn of dialog is clicked
     onReasonSubmit() {
+      const oTable = this.byId("pendingTable");
       const oModel = this.getOwnerComponent().getModel();
       const oData = this.getView().getModel("reasonModel").getData();
 
@@ -108,14 +112,17 @@ sap.ui.define([
         reason: oData.reason
       };
 
+      oTable.setBusy(true);
       //update call
       oModel.update(this._sPath, oUpdateData, {
         success: () => {
           sap.m.MessageToast.show(`${this._sAction} successful`);
           this._oReasonDialog.close();
+          oTable.setBusy(false);
         },
         error: () => {
           sap.m.MessageToast.show("Action failed");
+          oTable.setBusy(false);
         }
       });
     },

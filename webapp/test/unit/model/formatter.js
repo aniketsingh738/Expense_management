@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/expensemanagement/expensemanagement/utils/formatter"
+	"com/expensemanagement/expensemanagement/model/formatter"
 ], function (formatter) {
 	"use strict";
 

@@ -116,6 +116,12 @@ sap.ui.define([
                 aFinalFilters.push(oSearchFilter);
             }
 
+            oTable.setBusy(true);
+
+
+            oBinding.attachEventOnce("dataReceived", () => {
+                oTable.setBusy(false);
+            });
             oBinding.filter(aFinalFilters);
         }
         ,
@@ -126,7 +132,7 @@ sap.ui.define([
 
             if (!oContext) return;
 
-            const sPath = oContext.getPath(); 
+            const sPath = oContext.getPath();
 
             this.getOwnerComponent().getRouter().navTo("objectPage", {
                 path: encodeURIComponent(sPath)

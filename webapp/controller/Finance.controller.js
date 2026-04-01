@@ -70,6 +70,14 @@ sap.ui.define([
         }));
       }
 
+      oTable.setBusy(true);
+
+
+      oBinding.attachEventOnce("dataReceived", () => {
+        oTable.setBusy(false);
+      });
+
+
       oBinding.filter(aFilters);
     },
 

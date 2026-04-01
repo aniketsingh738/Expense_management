@@ -9,8 +9,6 @@ sap.ui.define([
   return Controller.extend("com.expensemanagement.expensemanagement.controller.Draft", {
     formatter: formatter,
     onInit() {
-      const oModel = this.getOwnerComponent().getModel();
-      console.log("FULL MODEL DATA:", oModel.getData());
       const oRouter = this.getOwnerComponent().getRouter();
       oRouter.getRoute("draftRequest").attachPatternMatched(this._onRouteMatched, this);
     }
@@ -22,9 +20,10 @@ sap.ui.define([
 
       const oTable = oView.byId("draftTable");
 
+      oTable.setBusy(true);
+
       const oUserModel = this.getOwnerComponent().getModel("userModel");
       const sEmpId = oUserModel.getProperty("/empId");
-
       const oBinding = oTable.getBinding("items");
 
       const aFilters = [
@@ -32,9 +31,16 @@ sap.ui.define([
         new sap.ui.model.Filter("empId", sap.ui.model.FilterOperator.EQ, sEmpId)
       ];
 
+
+      oBinding.attachEventOnce("dataReceived", () => {
+        oTable.setBusy(false);
+      });
+
+
       // employee id and status = Draft filters to draft table
       oBinding.filter(aFilters);
 
+      
       // Side nav selection 
       const oSideNav = this.getOwnerComponent()
         .getRootControl()
@@ -53,7 +59,9 @@ sap.ui.define([
       // Store path 
       this._sEditPath = `/Requests('${sId}')`;;
       console.log(this._sEditPath);
-      // Create edit model 
+
+      // Create edit model
+
       const oEditModel = new sap.ui.model.json.JSONModel({ ...oData });
       this.getView().setModel(oEditModel, "editModel");
 
@@ -109,6 +117,8 @@ sap.ui.define([
 
     // when edited value is save in the dialog 
     onSaveEdit() {
+      const oTable = this.byId("draftTable");
+      
       const oModel = this.getOwnerComponent().getModel();
       const oEditData = this.getView().getModel("editModel").getData();
 
@@ -148,12 +158,14 @@ sap.ui.define([
         return;
       }
 
+      oTable.setBusy(true);
       // Update original data using stored path
       oModel.update(this._sEditPath, oEditData, {
         success: () => {
           sap.m.MessageToast.show("Updated successfully");
 
           this._oDialog.close();
+          oTable.setBusy(false);
 
         },
         error: (oError) => {
@@ -163,11 +175,12 @@ sap.ui.define([
             const response = JSON.parse(oError.responseText);
             msg = response.error.message;
           } catch (e) { }
-
+          this._oDialog.close();
           MessageToast.show(msg);
+          oTable.setBusy(false);
         }
       });
-      this._oDialog.close();
+
     },
 
     //close edit dialog
