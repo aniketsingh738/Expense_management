@@ -2,7 +2,7 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/m/MessageToast",
   "sap/m/MessageBox",
-  "com/expensemanagement/expensemanagement/utils/formatter"
+  "com/expensemanagement/expensemanagement/model/formatter"
 ], (Controller, MessageToast, MessageBox, formatter) => {
   "use strict";
 
@@ -60,7 +60,7 @@ sap.ui.define([
       // Load fragment 
       if (!this._oDialog) {
         this._oDialog = sap.ui.xmlfragment(
-          "com.expensemanagement.expensemanagement.fragments.EditDialog",
+          "com.expensemanagement.expensemanagement.utils.fragments.EditDialog",
           this
         );
         this.getView().addDependent(this._oDialog);

@@ -15,18 +15,18 @@ sap.ui.define([
 
     init() {
     
-     // ✅ 1. Start MockServer FIRST
+     
       const MockServer = sap.ui.requireSync(
         "com/expensemanagement/expensemanagement/localService/mockserver"
       );
       MockServer.init();
 
-      console.log("✅ MockServer initialized BEFORE model");
+      console.log("MockServer initialized BEFORE model");
 
-      // ✅ 2. Call base init
+      // Call base init
       UIComponent.prototype.init.apply(this, arguments);
 
-      // ✅ 3. NOW create ODataModel (IMPORTANT)
+      //ODataModel
       const oModel = new ODataModel("/mock/odata/", {
         defaultBindingMode: "TwoWay",
         useBatch: false

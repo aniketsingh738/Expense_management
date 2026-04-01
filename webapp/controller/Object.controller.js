@@ -1,7 +1,7 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/m/MessageToast",
-  "com/expensemanagement/expensemanagement/utils/formatter",
+  "com/expensemanagement/expensemanagement/model/formatter",
   "sap/ui/core/routing/History"
 ], (Controller, MessageToast, formatter, History) => {
   "use strict";

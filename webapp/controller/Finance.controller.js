@@ -2,7 +2,7 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-  "com/expensemanagement/expensemanagement/utils/formatter"
+  "com/expensemanagement/expensemanagement/model/formatter"
 ], (Controller, Filter, FilterOperator, formatter) => {
   "use strict";
 

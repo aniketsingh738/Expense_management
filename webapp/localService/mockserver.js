@@ -7,8 +7,8 @@ sap.ui.define([
     init: function () {
 
 
-       // ✅ ABSOLUTE URL (CRITICAL FIX)
-    const sServiceUrl = "/mock/odata/";  // ✅ CHANGE THIS
+       // ABSOLUTE URL
+    const sServiceUrl = "/mock/odata/";  
 
 const oMockServer = new MockServer({
   rootUri: sServiceUrl
@@ -22,7 +22,6 @@ oMockServer.simulate(sRootPath + "/metadata.xml", {
   bGenerateMissingMockData: true
 });
 
-      // ✅ FORCE intercept
       MockServer.config({
         autoRespond: true,
         autoRespondAfter: 500
@@ -30,7 +29,7 @@ oMockServer.simulate(sRootPath + "/metadata.xml", {
 
       oMockServer.start();
 
-      console.log("✅ MockServer started with root:", "/odata/service/");
+      
     }
   };
 });
