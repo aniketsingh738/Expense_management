@@ -6,9 +6,9 @@ sap.ui.define([
   return Controller.extend("com.expensemanagement.expensemanagement.controller.App", {
 
     onInit() {
-      // Navigate to dashboard by default
-     
-      
+
+
+
     },
 
     onCollapseExpandPress() {
@@ -25,23 +25,26 @@ sap.ui.define([
       this.getOwnerComponent().getRouter().navTo(sKey);
     },
 
+    //on avatar press pop up
     onAvatarPressed: function (oEvent) {
-    const oView = this.getView();
+      const oView = this.getView();
 
-    if (!this._oPopover) {
+      if (!this._oPopover) {
         this._oPopover = sap.ui.xmlfragment(
-            oView.getId(),
-            "com.expensemanagement.expensemanagement.fragments.ProfilePopup",
-            this
+          oView.getId(),
+          "com.expensemanagement.expensemanagement.fragments.ProfilePopup",
+          this
         );
 
         oView.addDependent(this._oPopover);
-    }
+      }
 
-    this._oPopover.openBy(oEvent.getSource()); // 👈 opens near avatar
-},
-onClosePopover: function () {
-    this._oPopover.close();
-}
+      this._oPopover.openBy(oEvent.getSource()); 
+    },
+
+    //close popup
+    onClosePopover: function () {
+      this._oPopover.close();
+    }
   });
 });

@@ -1,7 +1,7 @@
 <core:FragmentDefinition
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
-
+<!--   Fragmemt to enter approve and rejected reason-->
     <Dialog
         title="{reasonModel>/title}"
         draggable="true"

@@ -14,13 +14,15 @@ sap.ui.define([
     }
     ,
 
+    //on route match fn
     _onRouteMatched() {
      const oView = this.getView();
+
   const oTable = oView.byId("draftTable");
 
   const oUserModel = this.getOwnerComponent().getModel("userModel");
   const sEmpId = oUserModel.getProperty("/empId");
-      console.log(sEmpId);
+    
   const oBinding = oTable.getBinding("items");
 
   const aFilters = [
@@ -28,9 +30,10 @@ sap.ui.define([
     new sap.ui.model.Filter("empId", sap.ui.model.FilterOperator.EQ, sEmpId)
   ];
 
+  // employee id and status = Draft filters to draft table
   oBinding.filter(aFilters);
 
-  // Side nav selection (your existing code)
+  // Side nav selection 
   const oSideNav = this.getOwnerComponent()
     .getRootControl()
     .byId("sideNavigation");
@@ -40,18 +43,19 @@ sap.ui.define([
   }
     }
     ,
+    //when edit is click display dialog to enter values
     onEdit(oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
       const oData = oContext.getObject();
       const sId=oData.id;
-      // Store path (important for update)
+      // Store path 
       this._sEditPath = `/Requests('${sId}')`;;
       console.log(this._sEditPath);
-      // Create edit model (clone data)
+      // Create edit model 
       const oEditModel = new sap.ui.model.json.JSONModel({ ...oData });
       this.getView().setModel(oEditModel, "editModel");
 
-      // Load fragment (lazy loading)
+      // Load fragment 
       if (!this._oDialog) {
         this._oDialog = sap.ui.xmlfragment(
           "com.expensemanagement.expensemanagement.fragments.EditDialog",
@@ -63,6 +67,7 @@ sap.ui.define([
       this._oDialog.open();
     },
 
+    //when delete is clicked open messagebox if ok then delete request
     onDelete(oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
      const oData=oContext.getObject();
@@ -72,7 +77,7 @@ sap.ui.define([
       const sPath=`/Requests('${sId}')`;
       
       
-
+      // message box for confirmation
       MessageBox.confirm(
         "Do you want to delete this request?",
         {
@@ -99,9 +104,13 @@ sap.ui.define([
 
 
     },
+
+    // when edited value is save in the dialog 
     onSaveEdit() {
       const oModel = this.getOwnerComponent().getModel();
       const oEditData = this.getView().getModel("editModel").getData();
+      
+      //field validation
       if (!oEditData.travelType ||
         !oEditData.startDate ||
         !oEditData.endDate ||
@@ -129,7 +138,7 @@ sap.ui.define([
       }
 
      
-
+      //amount<=0
       const amount = parseFloat(oEditData.amount);
 
       if (isNaN(amount) || amount <= 0) {
@@ -158,10 +167,14 @@ sap.ui.define([
       });
       this._oDialog.close();
     },
+
+    //close edit dialog
     onCancelEdit() {
       this._oDialog.close();
     },
 
+
+    //submit the req change status from Draft -> Pending
     onSubmit(oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
       
@@ -172,19 +185,19 @@ sap.ui.define([
       const sId=oData.id;
        const sPath = `/Requests('${sId}')`;
 
-      // ✅ Prevent re-submit
+      //Prevent re-submit
       if (oData.status === "Pending") {
         sap.m.MessageToast.show("Already submitted");
         return;
       }
 
-      // ✅ Optional validation before submit
+      //Optional validation before submit
       if (!oData.purpose || !oData.destination) {
         sap.m.MessageToast.show("Fill required fields before submitting");
         return;
       }
 
-      // ✅ Update status
+      //Update status
       const oUpdatedData = {
         ...oData,
         status: "Pending"
@@ -194,7 +207,7 @@ sap.ui.define([
         success: () => {
           sap.m.MessageToast.show("Request submitted successfully");
 
-          // Optional refresh
+          
           oModel.updateBindings(true);
         },
         error: (oError) => {

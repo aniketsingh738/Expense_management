@@ -4,28 +4,28 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
 >
-    <Page title="Request Status">
+    <Page title="{i18n>requestStatusPageTitle}">
         <content>
 
-            <!-- 🔍 Filter Bar -->
+            <!--  Filter Bar -->
             <Toolbar class="sapUiSmallMarginBottom">
                 <SearchField
                  id="searchField"
                     width="50%"
                     liveChange="onSearch"
-                    placeholder="Search destination / purpose..."
+                    placeholder="{i18n>LiPgsearchBarPlHolder}"
                 />
                 <ToolbarSpacer />
                 <Select id="statusSelect" change="onFilterChange" selectedKey="ALL">
                     <items>
-                        <core:Item key="ALL" text="All" />
-                        <core:Item key="Approved" text="Approved" />
-                        <core:Item key="Rejected" text="Rejected" />
+                        <core:Item key="ALL" text="{i18n>LiPgselectBarAll}" />
+                        <core:Item key="Approved" text="{i18n>LiPgselectBarApproved}" />
+                        <core:Item key="Rejected" text="{i18n>LiPgselectBarRejected}" />
                     </items>
                 </Select>
             </Toolbar>
 
-            <!-- 📊 Improved List Table -->
+            <!--Table -->
             <Table
                 id="statusTable"
                 items="{ path: '/Requests'}"
@@ -35,16 +35,16 @@
             >
                 <columns>
                     <Column width="18em">
-                        <Text text="Request Info"/>
+                        <Text text="{i18n>LiPgrequestInfo}"/>
                     </Column>
                     <Column minScreenWidth="Tablet" demandPopin="true">
-                        <Text text="Travel Details"/>
+                        <Text text="{i18n>LiPgtravelDetails}"/>
                     </Column>
                     <Column hAlign="End">
-                        <Text text="Amount"/>
+                        <Text text="{i18n>LiPgamount}"/>
                     </Column>
                     <Column>
-                        <Text text="Status"/>
+                        <Text text="{i18n>LiPgstatus}"/>
                     </Column>
                 </columns>
 
@@ -56,25 +56,25 @@
                     >
                         <cells>
 
-                            <!-- ✅ Main Info -->
+                            <!-- Main Info -->
                             <ObjectIdentifier
                                 title="{destination}"
-                                text="Emp ID: {empId}"
+                                text="{i18n>LiPgempId}: {empId}"
                             />
 
-                            <!-- ✅ Secondary Info -->
+                            <!--  Secondary Info -->
                             <VBox>
                                 <Text text="{travelType}" />
                                 <Text text="{purpose}" class="sapUiTinyMarginTop"/>
                             </VBox>
 
-                            <!-- ✅ Amount -->
+                            <!-- Amount -->
                             <ObjectNumber
                                 number="{amount}"
-                                unit="INR"
+                                unit="{i18n>LiPgcurrencyUnit}"
                             />
 
-                            <!-- ✅ Status -->
+                            <!-- Status -->
                             <ObjectStatus
                                 text="{status}"
                                 state="{ path: 'status', formatter: '.formatter.statusText' }"

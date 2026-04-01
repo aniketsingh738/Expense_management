@@ -9,9 +9,10 @@
     >
         <content>
             <VBox class="sapUiSmallMargin">
+            <!--  Destination-->
                 <Label text="Destination" />
                 <Input value="{editModel>/destination}" />
-
+            <!--   Travle Type-->
                 <Label text="Travel Type" />
                 <Select selectedKey="{editModel>/travelType}">
                     <items>
@@ -25,6 +26,7 @@
                         />
                     </items>
                 </Select>
+                <!-- start Date-->
                 <Label text="Start Date" />
                 <DatePicker
                     value="{editModel>/startDate}"
@@ -32,19 +34,21 @@
                     displayFormat="dd MMM yyyy"
                 />
 
-                <!-- ✅ End Date -->
+                <!-- End Date -->
                 <Label text="End Date" />
                 <DatePicker
                     value="{editModel>/endDate}"
                     valueFormat="yyyy-MM-dd"
                     displayFormat="dd MMM yyyy"
                 />
+                <!-- Amount-->
                 <Label text="Amount" />
                 <Input
                     value="{editModel>/amount}"
                     type="Number"
                 />
 
+            <!-- Purpose-->
                 <Label text="Purpose" />
                 <TextArea value="{editModel>/purpose}" />
             </VBox>

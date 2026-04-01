@@ -3,18 +3,18 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
 >
-    <Page title="Request Details" showNavButton="true" navButtonPress="onNavBack">
+    <Page title="{i18n>objectPageHeader}" showNavButton="true" navButtonPress="onNavBack">
         <content>
 
             <ObjectHeader
                 title="{destination}"
                 number="{amount}"
-                numberUnit="INR"
+                numberUnit="{i18n>ObPgcurrencyUnit}"
             >
                 <attributes>
-                    <ObjectAttribute text="Employee ID: {empId}" />
-                    <ObjectAttribute text="Type: {travelType}" />
-                    <ObjectAttribute text="Purpose: {purpose}" />
+                    <ObjectAttribute text="{i18n>ObPgemployeeId}: {empId}" />
+                    <ObjectAttribute text="{i18n>ObPgtype}: {travelType}" />
+                    <ObjectAttribute text="{i18n>ObPgpurpose}: {purpose}" />
                 </attributes>
                 <statuses>
                     <ObjectStatus
@@ -24,10 +24,10 @@
                 </statuses>
             </ObjectHeader>
 
-            <Panel headerText="Additional Details">
+            <Panel headerText="{i18n>ObPgadditionalDetailsHeading}">
                 <VBox class="sapUiSmallMargin">
-                    <Text text="Start Date: {startDate}" />
-                    <Text text="End Date: {endDate}" />
+                    <Text text="{i18n>ObPgstartDate}: {startDate}" />
+                    <Text text="{i18n>ObPgendDate}: {endDate}" />
                     
                  <ObjectStatus
     text="{= ${reason} ? 'Remark: ' + ${reason} : 'Remark: -' }"

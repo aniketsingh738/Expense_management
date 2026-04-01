@@ -4,7 +4,7 @@
     xmlns="sap.m"
     xmlns:f="sap.ui.layout.form"
 >
-    <Page title="Finance View">
+    <Page title="{i18n>FinancePageTitile}">
         <!-- Filter Section -->
         <VBox class="sapUiSmallMargin">
             <HBox
@@ -13,17 +13,17 @@
             >
                 <!-- Employee ID -->
                 <VBox>
-                    <Label text="Employee ID" />
+                    <Label text="{i18n>FnPgsearchEmployeeIdLb}" />
                     <Input
                         id="empIdInput"
-                        placeholder="Enter Employee ID"
+                        placeholder="{i18n>FnPgsearchEmployeeIdPlHd}"
                         width="200px"
                     />
                 </VBox>
 
                 <!-- Date Range -->
                 <VBox>
-                    <Label text="Date Range" />
+                    <Label text="{i18n>FnPgdateRange}" />
                     <DateRangeSelection
                         id="dateRange"
                         width="250px"
@@ -32,11 +32,11 @@
 
                 <!-- Amount -->
                 <VBox>
-                    <Label text="Amount (>=)" />
+                    <Label text="{i18n>FnPgamountLabel}" />
                     <Input
                         id="amountInput"
                         type="Number"
-                        placeholder="Enter amount"
+                        placeholder="{i18n>FnPgamountPlaceHd}"
                         width="200px"
                     />
                 </VBox>
@@ -45,13 +45,13 @@
                 <VBox justifyContent="End">
                     <HBox>
                         <Button
-                            text="Apply Filters"
+                            text="{i18n>FnPgapplyFilterBtn}"
                             press="onFilter"
                         />
 
-                        <!-- ✅ Clear Button -->
+                        <!-- Clear Button -->
                         <Button
-                            text="Clear"
+                            text="{i18n>FnPgclearFilterBtn}"
                             type="Transparent"
                             press="onClearFilters"
                             class="sapUiTinyMarginBegin"
@@ -72,19 +72,19 @@
         >
             <columns>
                 <Column width="18em">
-                    <Text text="Request Info" />
+                    <Text text="{i18n>FnPgreqInfo}" />
                 </Column>
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="Travel Details" />
+                    <Text text="{i18n>FnPgtravelDetails}" />
                 </Column>
                 <Column hAlign="End">
-                    <Text text="Amount" />
+                    <Text text="{i18n>FnPgamount}" />
                 </Column>
                 <Column>
-                    <Text text="Status" />
+                    <Text text="{i18n>FnPgstatus}" />
                 </Column>
             </columns>
 
@@ -95,13 +95,13 @@
                     vAlign="Middle"
                 >
                     <cells>
-                        <!-- ✅ Main Info -->
+                        <!-- Main Info -->
                         <ObjectIdentifier
                             title="{destination}"
-                            text="Emp ID: {empId}"
+                            text="{i18n>FnPgempId}: {empId}"
                         />
 
-                        <!-- ✅ Secondary Info -->
+                        <!-- Secondary Info -->
                         <VBox>
                             <Text text="{travelType}" />
                             <Text
@@ -110,13 +110,13 @@
                             />
                         </VBox>
 
-                        <!-- ✅ Amount -->
+                        <!--Amount -->
                         <ObjectNumber
                             number="{amount}"
-                            unit="INR"
+                            unit="{i18n>FnPgcurrencyUnit}"
                         />
 
-                        <!-- ✅ Status -->
+                        <!-- Status -->
                         <ObjectStatus
                             text="{status}"
                             state="{ path: 'status', formatter: '.formatter.statusText' }"

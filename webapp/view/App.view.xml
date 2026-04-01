@@ -1,106 +1,118 @@
-<mvc:View controllerName="com.expensemanagement.expensemanagement.controller.App"
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
-    	xmlns:tnt="sap.tnt"
-    xmlns="sap.m">
-   <VBox height="100%">
-    	<tnt:ToolHeader id="shellLikeToolHeader" class="sapUiTinyMargin">
-			<Button icon="sap-icon://menu2" type="Transparent" tooltip="Menu" press=".onCollapseExpandPress">
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Button>
-			<Image src="test-resources/sap/tnt/images/SAP_Logo.png" decorative="false" press="onLogoPressed" tooltip="SAP Logo" width="60px" height="30px">
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Image>
-			<Title text="Employee Travel and Expense Manager" wrapping="false" id="productName">
-				<layoutData>
-					<OverflowToolbarLayoutData priority="Disappear"/>
-				</layoutData>
-			</Title>
-			
-			<ToolbarSpacer />
-			
-			
-			
-			<Avatar icon="sap-icon://customer" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Avatar>
-		</tnt:ToolHeader>
+    xmlns:tnt="sap.tnt"
+    xmlns="sap.m"
+>
+    <VBox height="100%">
+        <tnt:ToolHeader
+            id="shellLikeToolHeader"
+            class="sapUiTinyMargin"
+        >
+            <Button
+                icon="sap-icon://menu2"
+                type="Transparent"
+                tooltip="Menu"
+                press=".onCollapseExpandPress"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                </layoutData>
+            </Button>
+
+            <Title
+                text="Employee Expense Manager"
+                wrapping="false"
+                id="productName"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="Disappear" />
+                </layoutData>
+            </Title>
+
+            <ToolbarSpacer />
+
+            <Avatar
+                icon="sap-icon://customer"
+                displaySize="XS"
+                press=".onAvatarPressed"
+                tooltip="Profile"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                </layoutData>
+            </Avatar>
+        </tnt:ToolHeader>
         <HBox width="100%">
-        	<tnt:SideNavigation id="sideNavigation" selectedKey="dashboard" expanded="true" 
-            itemSelect=".onItemSelect">
+            <tnt:SideNavigation
+                id="sideNavigation"
+                selectedKey="dashboard"
+                expanded="true"
+                itemSelect=".onItemSelect"
+            >
+                <tnt:NavigationList width="70%">
+                    <!-- Dashboard -->
+                    <tnt:NavigationListItem
+                        text="Dashboard"
+                        icon="sap-icon://home"
+                        key="dashboard"
+                    />
 
-  <tnt:NavigationList width="70%">
+                    <!-- Request Management -->
+                    <tnt:NavigationListGroup text="Requests">
+                        <!-- Create Request -->
+                        <tnt:NavigationListItem
+                            text="Create Request"
+                            icon="sap-icon://add"
+                            key="createReq"
+                            visible="{= ${userModel>/role} === 'EMPLOYEE'}"
+                        />
 
-    <!-- Dashboard -->
-    <tnt:NavigationListItem 
-      text="Dashboard" 
-      icon="sap-icon://home" 
-      key="dashboard" />
+                        <!-- Draft -->
+                        <tnt:NavigationListItem
+                            text="Draft Requests"
+                            icon="sap-icon://document"
+                            key="draftRequest"
+                            visible="{= ${userModel>/role} === 'EMPLOYEE'}"
+                        />
 
-    <!-- Request Management -->
-   <tnt:NavigationListGroup text="Requests">
+                        <!-- Pending -->
+                        <tnt:NavigationListItem
+                            text="Pending Approval"
+                            icon="sap-icon://pending"
+                            key="pendingApproval"
+                            visible="{= ${userModel>/role}!== 'FINANCE'}"
+                        />
 
-  <!-- Create Request -->
-  <tnt:NavigationListItem 
-    text="Create Request"
-    icon="sap-icon://add"
-    key="createReq"
-    visible="{= ${userModel>/role} === 'EMPLOYEE'}" />
+                        <!-- Approved -->
+                        <tnt:NavigationListItem
+                            text="Expense Request Status"
+                            icon="sap-icon://clinical-task-tracker"
+                            key="requestStatus"
+                            visible="{= ${userModel>/role}!== 'FINANCE'}"
+                        />
+                        <!-- Approved View for Finance-->
+                        <tnt:NavigationListItem
+                            text="View Approved"
+                            icon="sap-icon://table-view"
+                            key="viewRequest"
+                            visible="{= ${userModel>/role}==='FINANCE'}"
+                        />
 
-  <!-- Draft -->
-  <tnt:NavigationListItem 
-    text="Draft Requests"
-    icon="sap-icon://document"
-    key="draftRequest"
-    visible="{= ${userModel>/role} === 'EMPLOYEE'}" />
-
-  <!-- Pending -->
-  <tnt:NavigationListItem 
-    text="Pending Approval"
-    icon="sap-icon://pending"
-    key="pendingApproval" 
-    visible="{= ${userModel>/role}!== 'FINANCE'}"
-    />
-
-  <!-- Approved -->
-  <tnt:NavigationListItem 
-    text="Request Status"
-    icon="sap-icon://clinical-task-tracker"
-    key="requestStatus" 
-    visible="{= ${userModel>/role}!== 'FINANCE'}"
-    />
-    <tnt:NavigationListItem 
-    text="View Approved"
-    icon="sap-icon://table-view"
-    key="viewRequest" 
-    visible="{= ${userModel>/role}==='FINANCE'}"
-    />
-
-  
-
-  <!-- Rejected -->
- 
-
-</tnt:NavigationListGroup>
-
-  </tnt:NavigationList>
-
-  
-
-</tnt:SideNavigation>
-        <App id="app" width="100%" >
-         <layoutData>
-      <FlexItemData growFactor="1" />
-    </layoutData>
-        </App>
-    
+                        
+                    </tnt:NavigationListGroup>
+                </tnt:NavigationList>
+            </tnt:SideNavigation>
+            <!-- Display Page-->
+            <App
+                id="app"
+                width="100%"
+            >
+                <layoutData>
+                    <FlexItemData growFactor="1" />
+                </layoutData>
+            </App>
         </HBox>
-        </VBox>
-         
+    </VBox>
 </mvc:View>

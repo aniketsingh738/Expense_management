@@ -3,7 +3,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
 >
-    <Page title="Draft Requests" class="bluePageTitle">
+    <Page title="{i18n>draftPageTitle}" class="bluePageTitle">
         <content>
             <Table
                 id="draftTable"
@@ -17,63 +17,63 @@
             >
                 <!-- Columns -->
                 <columns>
-                    <!-- Always visible -->
+                    
                     <Column width="10em">
-                        <Text text="Emp ID" />
+                        <Text text="{i18n>DrPgempId}" />
                     </Column>
 
                     <Column>
-                        <Text text="Type" />
+                        <Text text="{i18n>DrPgtype}" />
                     </Column>
 
-                    <!-- Tablet and above -->
+                    
                     <Column
                         minScreenWidth="Tablet"
                         demandPopin="true"
                     >
-                        <Text text="Start Date" />
+                        <Text text="{i18n>DrPgstartDate}" />
                     </Column>
 
                     <Column
                         minScreenWidth="Tablet"
                         demandPopin="true"
                     >
-                        <Text text="End Date" />
+                        <Text text="{i18n>DrPgendDate}" />
                     </Column>
 
-                    <!-- Tablet -->
+                   
                     <Column
                         minScreenWidth="Tablet"
                         demandPopin="true"
                     >
-                        <Text text="Destination" />
+                        <Text text="{i18n>DrPgdestination}" />
                     </Column>
 
-                    <!-- Desktop mostly -->
+                 
                     <Column
                         minScreenWidth="Desktop"
                         demandPopin="true"
                         hAlign="Begin"
                     >
-                        <Text text="Amount" />
+                        <Text text="{i18n>DrPgamount}" />
                     </Column>
 
-                    <!-- Less important -->
+                    
                     <Column
                         minScreenWidth="Desktop"
                         demandPopin="true"
                         hAlign="Begin"
                     >
-                        <Text text="Purpose" />
+                        <Text text="{i18n>DrPgpurpose}" />
                     </Column>
 
-                    <!-- Always visible (important for actions) -->
+                 
                     <Column
                         hAlign="Begin"
                      
                         class="sapUiSmallMarginEnd"
                     >
-                        <Text text="Actions" />
+                        <Text text="{i18n>DrPgactions}" />
                     </Column>
                 </columns>
                 <!-- Rows -->
@@ -90,7 +90,7 @@
 
                             <ObjectNumber
                                 number="{amount}"
-                                unit="INR"
+                                unit="{i18n>DrPgcurrencyUnit}"
                             />
 
                             <Text text="{purpose}" />
@@ -102,17 +102,17 @@
                                         <MenuItem
                                             icon="sap-icon://edit"
                                             press="onEdit"
-                                            text="Edit"
+                                            text="{i18n>DrPgeditBtnText}"
                                         />
                                         <MenuItem
                                             icon="sap-icon://delete"
                                             press="onDelete"
-                                            text="Delete"
+                                            text="{i18n>DrPgdeleteBtnText}"
                                         />
                                         <MenuItem
                                             icon="sap-icon://paper-plane"
                                             press="onSubmit"
-                                            text="Submit"
+                                            text="{i18n>DrPgsubmitBtntext}"
                                         />
                                     </Menu>
                                 </menu>

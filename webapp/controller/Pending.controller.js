@@ -8,11 +8,12 @@ sap.ui.define([
     onInit() {
       const oRouter = this.getOwnerComponent().getRouter();
       oRouter.getRoute("pendingApproval")
-        .attachPatternMatched(this._onObjectMatched, this);
+        .attachPatternMatched(this._onRouteMatched, this);
     },
 
-    _onObjectMatched() {
-      this._applyPendingFilter();
+// on Route matched
+    _onRouteMatched() {
+      
 
       const oSideNav = this.getOwnerComponent()
         .getRootControl()
@@ -21,10 +22,13 @@ sap.ui.define([
       if (oSideNav) {
         oSideNav.setSelectedKey("pendingApproval");
       }
+      this._applyPendingFilter();
     }
 
 
     ,
+
+    // apply Pending Filters
     _applyPendingFilter() {
       const oTable = this.byId("pendingTable");
       const oBinding = oTable.getBinding("items");
@@ -39,7 +43,7 @@ sap.ui.define([
         new sap.ui.model.Filter("status", "EQ", "Pending")
       ];
 
-      // ✅ Apply empId filter ONLY for Employee
+      // Apply empId filter ONLY for Employee
       if (sRole === "EMPLOYEE") {
         aFilters.push(
           new sap.ui.model.Filter("empId", "EQ", sEmpId)
@@ -48,48 +52,24 @@ sap.ui.define([
 
       oBinding.filter(aFilters);
     },
-    // ✅ Approve
-    // onApprove(oEvent) {
-
-    //   const oContext = oEvent.getSource().getBindingContext();
-    //   const oData=oContext.getObject();
-    //   const sId=oData.id;
-    //   const sPath = `/Requests('${sId}')`;
-
-    //   const oModel = this.getOwnerComponent().getModel();
-
-    //   oModel.setProperty(sPath + "/status", "Approved");
-
-    //   this._applyPendingFilter();
-    //   MessageToast.show("Request Approved");
-
-
-    // },
-
-    // // ❌ Reject
-    // onReject(oEvent) {
-    //   const oContext = oEvent.getSource().getBindingContext("expenseModel");
-    //   const oTable = this.byId("pendingTable");
-    //   const sPath = oContext.getPath();
-
-    //   const oModel = this.getOwnerComponent().getModel("expenseModel");
-    //   console.log(sPath + "/status");
-    //   oModel.setProperty(sPath + "/status", "Rejected");
-    //   this._applyPendingFilter();
-    //   MessageToast.show("Request Rejected");
-    // },
+    
+    // when approve is clicked
     onApprove(oEvent) {
       this._openReasonDialog("Approve", oEvent);
     },
+
+    //when reject is clicked
     onReject(oEvent) {
       this._openReasonDialog("Reject", oEvent);
     },
+
+    // open dialog to enter reason
     _openReasonDialog(sAction, oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
       this._sAction = sAction;
       this._oData = oContext.getObject();
       const sId = this._oData.id;
-      this._sPath = `/Requests('${sId}')`; // OR use ID if you're using UUID
+      this._sPath = `/Requests('${sId}')`; 
 
       const oReasonModel = new sap.ui.model.json.JSONModel({
         title: `${sAction} Request`,
@@ -108,30 +88,31 @@ sap.ui.define([
 
       this._oReasonDialog.open();
     },
+
+    // when submit btn of dialog is clicked
     onReasonSubmit() {
       const oModel = this.getOwnerComponent().getModel();
       const oData = this.getView().getModel("reasonModel").getData();
 
-      // ✅ Validation
+      // Validation
       if (!oData.reason || oData.reason.trim() === "") {
         sap.m.MessageToast.show("Reason is required");
         return;
       }
 
       // Get original object
-      const oContext = this.getView().getBindingContext();
+      //const oContext = this.getView().getBindingContext();
 
 
 
-      // Prepare payload
+     
       const oUpdateData = {
         ...this._oData,
         status: this._sAction === "Approve" ? "Approved" : "Rejected",
         reason: oData.reason
       };
 
-
-      console.log(oUpdateData);
+      //update call
       oModel.update(this._sPath, oUpdateData, {
         success: () => {
           sap.m.MessageToast.show(`${this._sAction} successful`);
@@ -142,6 +123,8 @@ sap.ui.define([
         }
       });
     },
+
+    // when cancel btn is clicked to close
     onReasonCancel() {
       this._oReasonDialog.close();
     }

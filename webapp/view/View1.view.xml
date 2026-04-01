@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.expensemanagement.expensemanagement.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    <Page id="page" title="{i18n>dashboardPageTitle}">
    
   
   <VBox class="sapUiSmallMargin">
@@ -11,13 +11,13 @@
 
       <!-- Draft / Created Requests -->
       <GenericTile class="sapUiTinyMargin tileLayout"
-        header="Draft/Create Requests"
+      header="{= ${userModel>/role} === 'EMPLOYEE' ? 'Draft Requests' : 'All Requests' }"
         frameType="OneByHalf"
         press="onPressDraft">
         
-        <TileContent footer="Current Status">
+        <TileContent footer="{= ${userModel>/role} === 'EMPLOYEE' ? 'Draft Requests' : 'All Requests' }">
           <NumericContent 
-            value="{draftCount}" 
+            value="{/totalCount}" 
             valueColor="Neutral"
             indicator="None"
             withMargin="false" />
@@ -32,7 +32,7 @@
         
         <TileContent footer="Awaiting Action">
           <NumericContent 
-            value="{pendingCount}" 
+            value="{/pendingCount}" 
             valueColor="Critical"
             indicator="Up"
             withMargin="false" />
@@ -47,7 +47,7 @@
         
         <TileContent footer="Successfully Approved">
           <NumericContent 
-            value="{approvedCount}" 
+            value="{/approvedCount}" 
             valueColor="Good"
             indicator="Up"
             withMargin="false" />
@@ -62,7 +62,7 @@
         
         <TileContent footer="Declined Requests">
           <NumericContent 
-            value="{rejectedCount}" 
+            value="{/rejectedCount}" 
             valueColor="Error"
             indicator="Down"
             withMargin="false" />

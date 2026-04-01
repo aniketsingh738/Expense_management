@@ -4,9 +4,8 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
 >
-    <Page title="Pending Requests">
+    <Page title="{i18n>pendingApprovalPageTitle}">
         <content>
-
             <Table
                 id="pendingTable"
                 items="{ path: '/Requests'}"
@@ -14,13 +13,11 @@
                 growingScrollToLoad="true"
                 class="sapUiResponsiveMargin"
             >
-
                 <!-- Columns -->
                 <columns>
-
                     <!-- Main Info -->
                     <Column width="16em">
-                        <Text text="Request" />
+                        <Text text="{i18n>PnPgrequest}" />
                     </Column>
 
                     <!-- Travel Info -->
@@ -28,7 +25,7 @@
                         minScreenWidth="Tablet"
                         demandPopin="true"
                     >
-                        <Text text="Travel Info" />
+                        <Text text="{i18n>PnPgtravelInfo}" />
                     </Column>
 
                     <!-- Amount -->
@@ -37,7 +34,7 @@
                         minScreenWidth="Tablet"
                         demandPopin="true"
                     >
-                        <Text text="Amount" />
+                        <Text text="{i18n>PnPgamount}" />
                     </Column>
 
                     <!-- Actions -->
@@ -46,39 +43,53 @@
                         demandPopin="true"
                         visible="{= ${userModel>/role} === 'APPROVER' }"
                     >
-                        <Text text="Actions" />
+                        <Text text="{i18n>PnPgactions}" />
                     </Column>
-
                 </columns>
 
                 <!-- Items -->
                 <items>
                     <ColumnListItem vAlign="Middle">
-
                         <cells>
-
-                            <!-- ✅ Main Info -->
+                            <!--Main Info -->
                             <ObjectIdentifier
                                 title="{destination}"
-                                text="Emp ID: {empId}"
+                                text="{i18n>PnPgempId}: {empId}"
                             />
 
-                            <!-- ✅ Travel + Purpose -->
+                            <!-- Travel & Purpose -->
                             <VBox>
+                                <!-- Travel Type -->
                                 <Text text="{travelType}" />
+
+                                <!-- Dates -->
+                                <HBox
+                                    class="sapUiTinyMarginTop"
+                                    wrap="Wrap"
+                                >
+                                    <Text text="{startDate}" />
+                                    <Text
+                                        text=" - "
+                                        class="sapUiTinyMarginBegin sapUiTinyMarginEnd"
+                                    />
+                                    <Text text="{endDate}" />
+                                </HBox>
+
+                                <!--Purpose -->
                                 <Text
                                     text="{purpose}"
                                     class="sapUiTinyMarginTop"
+                                    wrapping="true"
                                 />
                             </VBox>
 
-                            <!-- ✅ Amount -->
+                            <!--Amount -->
                             <ObjectNumber
                                 number="{amount}"
-                                unit="INR"
+                                unit="{i18n>PnPgcurrencyUnit}"
                             />
 
-                            <!-- ✅ Actions -->
+                            <!--Actions -->
                             <HBox
                                 visible="{= ${userModel>/role} === 'APPROVER' }"
                                 justifyContent="Start"
@@ -88,23 +99,20 @@
                                     icon="sap-icon://accept"
                                     type="Accept"
                                     press="onApprove"
-                                    tooltip="Approve"
+                                    tooltip="{i18n>PnPgapproveText}"
                                 />
                                 <Button
                                     icon="sap-icon://decline"
                                     type="Reject"
                                     press="onReject"
                                     class="sapUiTinyMarginBegin"
-                                    tooltip="Reject"
+                                    tooltip="{i18n>PnPgrejectText}"
                                 />
                             </HBox>
-
                         </cells>
                     </ColumnListItem>
                 </items>
-
             </Table>
-
         </content>
     </Page>
 </mvc:View>

@@ -16,13 +16,12 @@ sap.ui.define([
       oRouter.getRoute("viewRequest").attachPatternMatched(this._onRouteMatched, this);
       const oTable = this.byId("financeTable");
 
-      oTable.attachEventOnce("updateFinished", () => {
-        this._applyDefaultFilter();
-      });
+
+
     }
 
     ,
-
+    //on route matched
     _onRouteMatched() {
       const oSideNav = this.getOwnerComponent()
         .getRootControl()
@@ -31,25 +30,16 @@ sap.ui.define([
       if (oSideNav) {
         oSideNav.setSelectedKey("viewRequest");
       }
+      this._applyFilters();
 
     },
 
-
-    _applyDefaultFilter: function () {
+    // Apply Filters
+    _applyFilters: function () {
       const oTable = this.byId("financeTable");
       const oBinding = oTable.getBinding("items");
 
-      const aFilters = [
-        new Filter("status", FilterOperator.EQ, "Approved")
-      ];
-
-      oBinding.filter(aFilters);
-
-    },
-
-    onFilter: function () {
-      const oTable = this.byId("financeTable");
-      const oBinding = oTable.getBinding("items");
+      if (!oBinding) return;
 
       const empId = this.byId("empIdInput").getValue();
       const amount = this.byId("amountInput").getValue();
@@ -60,7 +50,7 @@ sap.ui.define([
 
       let aFilters = [];
 
-      // Always filter Approved
+      // approver 
       aFilters.push(new Filter("status", FilterOperator.EQ, "Approved"));
 
       // Employee ID
@@ -73,7 +63,7 @@ sap.ui.define([
         aFilters.push(new Filter("amount", FilterOperator.GE, parseFloat(amount)));
       }
 
-      // Date Range (startDate)
+      // Date Range
       if (fromDate && toDate) {
         aFilters.push(new Filter({
           path: "startDate",
@@ -86,6 +76,12 @@ sap.ui.define([
       oBinding.filter(aFilters);
     },
 
+    // when apply filter btn is clicked
+    onFilter: function () {
+      this._applyFilters();
+    },
+
+    // date format for date range filter
     _formatDate: function (oDate) {
       const yyyy = oDate.getFullYear();
       const mm = String(oDate.getMonth() + 1).padStart(2, "0");
@@ -94,6 +90,8 @@ sap.ui.define([
     }
 
     ,
+
+    //clear all the filters
     onClearFilters() {
       const oView = this.getView();
 
@@ -103,16 +101,17 @@ sap.ui.define([
       oView.byId("dateRange").setDateValue(null);
       oView.byId("dateRange").setSecondDateValue(null);
 
-      // 🔹 Reapply default filter (IMPORTANT)
-      this._applyDefaultFilter();
+
+      this._applyFilters();
     },
 
+    // item press to navigate to object page
     onItemPress(oEvent) {
       const oContext = oEvent.getSource().getBindingContext();
 
       if (!oContext) return;
 
-      const sPath = oContext.getPath(); // ✅ correct
+      const sPath = oContext.getPath();
 
       this.getOwnerComponent().getRouter().navTo("objectPage", {
         path: encodeURIComponent(sPath)

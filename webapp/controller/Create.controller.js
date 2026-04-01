@@ -21,12 +21,14 @@ sap.ui.define([
       };
       const newModel = new JSONModel(oNewRequest);
       this.getView().setModel(newModel);
-      // Set Employee ID automatically
+      // Set Employee ID 
       const empId = oUserModel.getProperty("/empId") || "EMP001";
 
 
       this.getView().getModel().setProperty("/empId", empId);
     },
+
+    // route match fn.
     _onRouteMatched() {
       const oSideNav = this.getOwnerComponent()
         .getRootControl()
@@ -37,6 +39,7 @@ sap.ui.define([
       }
     }
     ,
+    // on submit
     onSubmit() {
       const oModel = this.getOwnerComponent().getModel();
 
@@ -74,7 +77,7 @@ sap.ui.define([
       }
 
       
-
+      //amount <=0 check
       const amount = parseFloat(oNewRequest.amount);
 
       if (isNaN(amount) || amount <= 0) {
@@ -87,33 +90,15 @@ sap.ui.define([
       oNewRequest.status = "Draft";
       oNewRequest.id = crypto.randomUUID();
 
-      // // Push into requests array
-      // const aRequests = oExpenseModel.getProperty("/data/requests");
-
-      // aRequests.push({ ...oNewRequest });
-
-      // oExpenseModel.setProperty("/requests", aRequests);
-
-      // // ✅ Reset form (correct way)
-      // oViewModel.setData({
-      //     empId: oNewRequest.empId,
-      //     travelType: "",
-      //     startDate: "",
-      //     endDate: "",
-      //     destination: "",
-      //     amount: "",
-      //     purpose: ""
-      // });
-
-      // MessageToast.show("Request Created Successfully!");
-
-      // ✅ CREATE (MockServer call)
+      
+      //CREATE (MockServer call)
       oModel.create("/Requests", oNewRequest, {
         success: () => {
           sap.m.MessageToast.show("Request Created Successfully!");
+          
           // refresh UI bindings
           oModel.updateBindings(true);
-          // ✅ Reset form
+          
           oViewModel.setData({
             empId: oNewRequest.empId,
             travelType: "",
@@ -124,6 +109,7 @@ sap.ui.define([
             purpose: ""
           });
         },
+        // error handling
         error: (oError) => {
           let msg = "Create failed";
 
