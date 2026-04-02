@@ -225,22 +225,5 @@ npm run unit-test      # Run unit tests
 
 ---
 
-## 🚀 Future Enhancements
 
-* Bulk approval feature
-* File attachments
-* Email notifications
-* Real backend (OData integration)
-
----
-
-## 👨‍💻 Author
-
-**Aniket Singh**
-
----
-
-## 📄 License
-
-This project is for learning/demo purposes.
 
