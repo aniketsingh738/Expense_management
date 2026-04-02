@@ -66,6 +66,7 @@ webapp/
 │   ├── Draft.controller.js
 │   ├── Finance.controller.js
 │   ├── List.controller.js
+|   ├── NotAuthorize.controller.js
 │   ├── Pending.controller.js
 │   ├── Object.controller.js
 │
@@ -75,6 +76,7 @@ webapp/
 │   ├── Draft.view.xml
 │   ├── Finance.view.xml
 │   ├── List.view.xml
+|   ├── NotAuthorize.view.xml
 │   ├── Pending.view.xml
 │   ├── Object.view.xml
 │
