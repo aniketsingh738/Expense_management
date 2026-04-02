@@ -116,7 +116,7 @@ webapp/
 ### 🔹 Controllers
 
 | Controller    | Description                                   |
-| ---------- ---| --------------------------------------------- |
+| --------------| --------------------------------------------- |
 | Create        | Create expense request                        |
 | Draft         | Edit/Delete draft requests                    |
 | List          | View request status (approved/rejected)       |
