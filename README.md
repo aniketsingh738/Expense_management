@@ -17,7 +17,7 @@ A **SAP Fiori (UI5)** application for managing employee travel expense requests 
 
 * View pending requests
 * Approve / Reject requests with remarks
-* (Optional) Bulk approval
+
 
 ### 💰 Finance Team
 
