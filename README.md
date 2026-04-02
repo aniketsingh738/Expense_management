@@ -115,15 +115,15 @@ webapp/
 
 ### 🔹 Controllers
 
-| Controller | Description                                   |
-| ---------- | --------------------------------------------- |
-| Create     | Create expense request                        |
-| Draft      | Edit/Delete draft requests                    |
-| List       | View request status (approved/rejected)       |
-| Pending    | Approve/Reject requests                       |
-| Finance    | View approved requests                        |
-| Object     | Detailed request view                         |
-
+| Controller    | Description                                   |
+| ---------- ---| --------------------------------------------- |
+| Create        | Create expense request                        |
+| Draft         | Edit/Delete draft requests                    |
+| List          | View request status (approved/rejected)       |
+| Pending       | Approve/Reject requests                       |
+| Finance       | View approved requests                        |
+| Object        | Detailed request view                         |
+| NotAuthorize  | Not Authorize  view                           |
 ---
 
 ## ▶️ How to Run the App
@@ -208,19 +208,6 @@ npm run unit-test
 <img width="1305" height="594" alt="Screenshot 2026-04-02 112847" src="https://github.com/user-attachments/assets/2c65c48b-3aae-4e9f-a569-a7cfb658fe18" />
 <img width="1314" height="593" alt="Screenshot 2026-04-02 112906" src="https://github.com/user-attachments/assets/ac5cc6f3-d4a9-455f-8b0e-106e9b7c475b" />
 ---
-
-### 👨‍💼 Employee Flow
-
-![Employee Flow](./screenshots/employee-flow.png)
-
----
-
-### 🧑‍💼 Manager Approval
-
-![Manager Approval](./screenshots/manager-approval.png)
-
----
-
 ## ⚙️ Scripts
 
 ```bash
