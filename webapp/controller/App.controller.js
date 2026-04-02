@@ -32,7 +32,7 @@ sap.ui.define([
       if (!this._oPopover) {
         this._oPopover = sap.ui.xmlfragment(
           oView.getId(),
-          "com.expensemanagement.expensemanagement.fragments.ProfilePopup",
+          "com.expensemanagement.expensemanagement.utils.fragments.ProfilePopup",
           this
         );
 

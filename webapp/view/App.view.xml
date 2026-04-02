@@ -22,7 +22,7 @@
             </Button>
 
             <Title
-                text="Employee Expense Manager"
+                text="{i18n>appTitle}"
                 wrapping="false"
                 id="productName"
             >

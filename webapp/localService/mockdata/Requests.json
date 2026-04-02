@@ -43,7 +43,7 @@
         "travelType": "International",
         "startDate": "2026-03-20",
         "endDate": "2026-03-22",
-        "destination": "North Korea",
+        "destination": "China",
         "amount": 5000,
         "purpose": "Client Meeting",
         "status": "Rejected",
