@@ -30,6 +30,15 @@ sap.ui.define([
 
     // route match fn.
     _onRouteMatched() {
+
+      //authorization check
+      const sRole = this.getOwnerComponent()
+        .getModel("userModel")
+        .getProperty("/role");
+
+      if (sRole !== "EMPLOYEE") {
+        this.getOwnerComponent().getRouter().navTo("notAuthorized");
+      }
       const oSideNav = this.getOwnerComponent()
         .getRootControl()
         .byId("sideNavigation");
@@ -76,7 +85,7 @@ sap.ui.define([
         return;
       }
 
-      
+
       //amount <=0 check
       const amount = parseFloat(oNewRequest.amount);
 
@@ -90,15 +99,15 @@ sap.ui.define([
       oNewRequest.status = "Draft";
       oNewRequest.id = crypto.randomUUID();
 
-      
+
       //CREATE (MockServer call)
       oModel.create("/Requests", oNewRequest, {
         success: () => {
           sap.m.MessageToast.show("Request Created Successfully!");
-          
+
           // refresh UI bindings
           oModel.updateBindings(true);
-          
+
           oViewModel.setData({
             empId: oNewRequest.empId,
             travelType: "",

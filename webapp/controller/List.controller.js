@@ -19,6 +19,14 @@ sap.ui.define([
 
         // route matched fn
         _onRouteMatched() {
+
+            //authorization check
+            const sRole = this.getOwnerComponent()
+                .getModel("userModel")
+                .getProperty("/role");
+            if (sRole === "FINANCE") {
+                this.getOwnerComponent().getRouter().navTo("notAuthorized");
+            }
             const oView = this.getView();
 
             const oSelect = oView.byId("statusSelect");

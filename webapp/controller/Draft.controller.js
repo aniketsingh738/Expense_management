@@ -16,13 +16,20 @@ sap.ui.define([
 
     //on route match fn
     _onRouteMatched() {
+      const oUserModel = this.getOwnerComponent().getModel("userModel");
+
+      // authorization check
+      const sRole=oUserModel.getProperty("/role");
+      if (sRole !== "EMPLOYEE") {
+        this.getOwnerComponent().getRouter().navTo("notAuthorized");
+      }
       const oView = this.getView();
 
       const oTable = oView.byId("draftTable");
 
       oTable.setBusy(true);
 
-      const oUserModel = this.getOwnerComponent().getModel("userModel");
+      
       const sEmpId = oUserModel.getProperty("/empId");
       const oBinding = oTable.getBinding("items");
 

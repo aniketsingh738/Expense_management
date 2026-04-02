@@ -36,11 +36,14 @@ sap.ui.define([
 
       // device model
       this.setModel(models.createDeviceModel(), "device");
+
+      //user role
       const role=["FINANCE","EMPLOYEE","APPROVER"];
+
       // user model
       const oUserModel = this.getModel("userModel");
       oUserModel.setData({
-        role: role[1],
+        role: role[0],
         empId: "EMP001",
         name: "Aniket",
         isLoggedIn: true

@@ -20,6 +20,14 @@ sap.ui.define([
     ,
     //on route matched
     _onRouteMatched() {
+
+      //authorization check
+      const sRole = this.getOwnerComponent()
+        .getModel("userModel")
+        .getProperty("/role");
+      if (sRole !== "FINANCE") {
+        this.getOwnerComponent().getRouter().navTo("notAuthorized");
+      }
       const oSideNav = this.getOwnerComponent()
         .getRootControl()
         .byId("sideNavigation");

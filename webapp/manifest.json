@@ -55,7 +55,6 @@
       "userModel": {
         "type": "sap.ui.model.json.JSONModel"
       },
-      
       "expenseModel": {
         "type": "sap.ui.model.json.JSONModel",
         "settings": {
@@ -71,7 +70,7 @@
                 "purpose": "Client Meeting",
                 "status": "Approved"
               },
-               {
+              {
                 "empId": "EMP003",
                 "travelType": "International",
                 "startDate": "2026-03-20",
@@ -101,7 +100,7 @@
                 "purpose": "Conference",
                 "status": "Pending"
               },
-               {
+              {
                 "empId": "EMP002",
                 "travelType": "International",
                 "startDate": "2026-04-01",
@@ -111,7 +110,7 @@
                 "purpose": "Conference",
                 "status": "DRAFT"
               },
-               {
+              {
                 "empId": "EMP002",
                 "travelType": "International",
                 "startDate": "2026-04-01",
@@ -121,7 +120,7 @@
                 "purpose": "Conference",
                 "status": "DRAFT"
               },
-               {
+              {
                 "empId": "EMP005",
                 "travelType": "International",
                 "startDate": "2026-04-01",
@@ -132,7 +131,6 @@
                 "status": "Approved"
               }
             ]
-            
           }
         }
       }
@@ -172,44 +170,49 @@
           ]
         },
         {
-          "name":"draftRequest",
-          "pattern":"draft",
-          "target":[
+          "name": "draftRequest",
+          "pattern": "draft",
+          "target": [
             "draftView"
           ]
         },
         {
-          "name":"requestStatus",
-          "pattern":"status",
-          "target":[
+          "name": "requestStatus",
+          "pattern": "status",
+          "target": [
             "statusView"
           ]
         },
         {
-          "name":"pendingApproval",
-          "pattern":"pending",
-          "target":[
+          "name": "pendingApproval",
+          "pattern": "pending",
+          "target": [
             "pendingView"
           ]
         },
         {
-          "name":"viewRequest",
-          "pattern":"view",
-          "target":[
+          "name": "viewRequest",
+          "pattern": "view",
+          "target": [
             "viewView"
           ]
         },
         {
-          "name":"testRequest",
-          "pattern":"test",
-          "target":[
+          "name": "testRequest",
+          "pattern": "test",
+          "target": [
             "testView"
           ]
         },
         {
-          "name":"objectPage",
-           "pattern": "object/{path}",
-      "target": "objectPage"
+          "name": "objectPage",
+          "pattern": "object/{path}",
+          "target": "objectPage"
+        },
+        {
+          "name":"notAuthorized",
+          "pattern":"notAuth",
+          "target":"notAuthView"
         }
       ],
       "targets": {
@@ -221,29 +224,33 @@
           "id": "Create",
           "name": "Create"
         },
-        "draftView":{
-          "id":"Draft",
-          "name":"Draft"
+        "draftView": {
+          "id": "Draft",
+          "name": "Draft"
         },
-        "statusView":{
-          "id":"List",
-          "name":"List"
+        "statusView": {
+          "id": "List",
+          "name": "List"
         },
-        "pendingView":{
-          "id":"Pending",
-          "name":"Pending"
+        "pendingView": {
+          "id": "Pending",
+          "name": "Pending"
         },
-        "viewView":{
-          "id":"Finance",
-          "name":"Finance"
+        "viewView": {
+          "id": "Finance",
+          "name": "Finance"
         },
-        "testView":{
-          "id":"Test",
-          "name":"Test"
+        "testView": {
+          "id": "Test",
+          "name": "Test"
         },
-        "objectPage":{
-          "id":"Object",
-          "name":"Object"
+        "objectPage": {
+          "id": "Object",
+          "name": "Object"
+        },
+        "notAuthView":{
+          "id":"NotAuthorize",
+          "name":"NotAuthorize"
         }
       }
     },

@@ -1,0 +1,33 @@
+<mvc:View
+    controllerName="com.expensemanagement.expensemanagement.controller.NotAuthorize"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <VBox
+        class="sapUiSmallMargin"
+        alignItems="Center"
+        justifyContent="Center"
+        height="100%"
+    >
+        <core:Icon
+            src="sap-icon://locked"
+            size="4rem"
+            color="Negative"
+        />
+
+        <Title
+            text="{i18n>NaPgaccessDeniedText}"
+            level="H2"
+        />
+
+        <Text text="{i18n>NaPgmainText}" />
+
+        <Button
+            text="{i18n>NaPgnavBtntext}"
+            press=".onNavBack"
+            type="Emphasized"
+            class="sapUiSmallMarginTop"
+        />
+    </VBox>
+</mvc:View>
